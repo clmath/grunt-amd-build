@@ -43,6 +43,11 @@ module.exports = function (grunt) {
 			// Exclude specified modules
 			pE.excludeArray(exclude.concat(excludeShallow));
 
+			// Exclude the shims
+			if (loaderConfig.shim) {
+				pE.excludeArray(Object.keys(loaderConfig.shim));
+			}
+
 			// Exclude dependencies of modules specified in the "exclude" property.
 			exclude.forEach(function (mid) {
 				pE.excludeArray(getDeps(getModuleFromMid(mid)));
